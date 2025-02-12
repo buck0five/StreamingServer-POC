@@ -1,0 +1,11 @@
+[Unit]
+Description=Liquidsoap Service
+After=network.target
+
+[Service]
+User=buck0five
+ExecStart=/usr/bin/liquidsoap /home/buck0five/StreamingServer-POC/config/liquidsoap/main.liq
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
