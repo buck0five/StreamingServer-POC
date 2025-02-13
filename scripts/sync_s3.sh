@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Move into this script's directory so .env is found
-cd "$(dirname "$0")"
+cd "$(dirname "$0")"/..
 
 # Load .env
 if [ -f .env ]; then
@@ -22,10 +22,11 @@ mkdir -p "$S3_LOCAL_DIR"
 
 # Configure rclone remote named "linode-s3" on the fly
 rclone config create linode-s3 s3 \
+    provider "Other" \
     env_auth=false \
     access_key_id="$S3_ACCESS_KEY_ID" \
     secret_access_key="$S3_SECRET_ACCESS_KEY" \
-    region="" \
+    region "us-southeast-1" \
     endpoint="$S3_ENDPOINT" \
     acl="private" \
     --non-interactive
